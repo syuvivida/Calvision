@@ -92,6 +92,8 @@ for i in energies:
     jdlfile.write("Error = "+stdarea+args.particle+"$(cluster)_$(process).stderr"+'\n')
     jdlfile.write("Log = "+stdarea+args.particle+"$(cluster)_$(process).condor"+'\n')
     jdlfile.write("Arguments = $(process)"+'\n')
+    jdlfile.write("+JobFlavour = \"tomorrow\""+'\n')
+    jdlfile.write("request_cpus= 2"+'\n')
 #    jdlfile.write("request_memory = 4GB"+'\n')
     jdlfile.write('Queue 50' + '\n') # run jobs in parallel
     jdlfile.close()

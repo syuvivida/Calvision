@@ -22,22 +22,29 @@ Double_t pulse(Double_t *x, Double_t *par)
 
 void myfunc()
 {
-  auto f1 = new TF1("f1",pulse,0,3000,3);
+  auto f1 = new TF1("f1",pulse,0,100,3);
   // norm
   //  f1->SetNpx(2000);
-  // 8000*1e6*0.2*1.6e-19*0.5*50/1e-9
-  f1->SetParameter(0,6.4);
+  // 
+  double effCharge1 = 0.511*8000*5*1e5*0.2*1.6e-19*50/1e-9;
+    // 0.511*8000*3*5e6*0.2*1.6e-19*50/1e-9;
+    //9*8000*5*1e5*0.2*1.6e-19*50/1e-9;    
+    //8000*1e6*0.2*1.6e-19*0.5*50/1e-9;
+  f1->SetParameter(0,effCharge1);
   f1->SetParameter(1,30);
   f1->SetParameter(2,300);
   f1->SetParNames("Norm","Rise time","Decay time");
   f1->Draw();
 
-  auto f2 = new TF1("f2",pulse,0,3000,3);
+  auto f2 = new TF1("f2",pulse,0,100,3);
   // norm
-  // 9000*1e6*0.2*1.6e-19*0.5*50/1e-9
-  f2->SetParameter(0,7.2);
-  f2->SetParameter(1,15);
-  f2->SetParameter(2,10);
+  double effCharge2 = 0.511*9000*5*1e5*0.2*1.6e-19*50/1e-9;
+    //0.511*9000*3*5e6*0.2*1.6e-19*50/1e-9;
+    // 2*9000*5*1e5*0.2*1.6e-19*50/1e-9;
+    //0.5*9000*1e6*0.2*1.6e-19*50/1e-9;
+  f2->SetParameter(0,effCharge2);
+  f2->SetParameter(1,12);
+  f2->SetParameter(2,15);
   f2->SetParNames("Norm","Rise time","Decay time");
   f2->SetLineColor(4);
   f2->Draw();
